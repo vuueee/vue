@@ -1,0 +1,129 @@
+*,*:after,*:before {
+    padding:0;
+    margin:0;
+    border:0;
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: 1110px;
+    margin: 0px auto;
+}
+$border : #ECEFF1;
+%template {
+    border: 1px solid $border;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    font-family: 'Open Sans', sans-serif;
+    color:#050F19;
+}
+.nav {
+    color:#708598;
+    font-size: 12px;
+    line-height: 20px;
+    font-style: normal;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0px;
+    .location {
+        display: flex;
+        justify-content: space-between;
+        img {
+            padding-right: 8px;
+        }
+    }
+    .menu {
+        display: flex;
+        justify-content: space-around;
+        .menu__item {
+            padding-right: 24px;
+            position: relative;
+            &.drop:after {
+                position: absolute;
+                top:1px;
+                right:0px;
+                content: "";
+                background-image: url("assets/arrow.svg");
+                background-color: #FAFBFC;
+                width: 18px;
+                height: 18px;
+            }
+        }
+        
+    }
+}
+.header {
+    
+    padding: 14px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .header__item {
+        @extend %template;
+        display: flex;
+        justify-content: space-between;
+        padding: 0px 16px;
+        
+        div {
+            align-self: center;
+            padding-left: -35px;
+        }
+        &.catalog {
+            background-color: #FED83D;
+            border-color: transparent;
+            width: 116px;
+        }
+        &.list {
+            background-color: #ECEFF1;
+            width: 111px;
+        }
+    }
+    .header__input {
+        @extend %template;
+        display: flex;
+        position: relative;
+        input {
+            padding-right:34px;
+            padding-left: 14px;
+            align-self: center;
+            font-size: 14px;
+            height: 38px;
+            width: 526px;
+        }
+        img {
+            position: absolute;
+            top:10px;
+            right: 12px;
+
+        }
+        .suggest {
+            position: absolute;
+            top:100%;
+            left:0px;
+            width: 100%;
+            padding-left:14px ;
+            li {
+                border-bottom: 1px $border solid ;
+                background-color: #FAFBFC;
+            }
+        }
+    }
+   
+}
+.header__bg {
+    border-bottom: 1px $border solid;
+}
+.nav__bg {
+    border-bottom: 1px $border solid;
+    background-color: #FAFBFC;
+}

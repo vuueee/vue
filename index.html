@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <div class="nav__bg">
+            <div class="container">
+                <div class="nav">
+                    <div class="location">
+                        Волгоградская область
+                    </div>
+                    <div class="menu">
+                       <div :class="[item.sub?'drop':'no','menu__item']" v-for="item in menu_items">
+                            {{item.name}}
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header__bg">
+            <div class="container">
+                <div class="header">
+                    <img src="assets/Group.svg">
+                    <div class="header__item catalog">
+                        <img src="assets/menu.svg" alt="">
+                        <div>Каталог</div>
+                    </div>
+                    <div class="header__input">
+                        <input type="text" placeholder="Хочу найти..." v-model="input" @input="OnInput" >
+                        <img src="assets/search.svg">
+                        <ul class="suggest">
+                            <li  v-for="(item,index) in suggestions" @click="SetInput(item)">
+                                {{item}}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="header__item list">
+                        <div>Список </div>
+                        <img src="assets/list.svg" alt="">
+                    </div>
+                    <img src="assets/ava.svg">
+                </div>
+            </div>
+        </div>
+     </div>
+     <script src="main.js"></script>
+</body>
+</html>
