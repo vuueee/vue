@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="page__title">Test task Junior Frontend Developer</h1>
+
+    <div id="app">
+        <div class="container">
+            <form method="POST" action="index.html" class="forma" @submit.prevent="submit" >
+                <div class="title">
+                    <h2>Введите информацию о себе:</h2>
+                </div>
+                <div class="form__attributes">
+                    
+                    <div>
+                        <label for="name"> Имя*
+                            <div class="form_error" v-if="$v.name.$error">обязательное поле</div>
+                        </label>
+                        <input id="name" v-model="$v.name.$model" :class="[$v.name.$invalid & $v.name.$dirty?'error_border':'']">
+                        
+                    </div>
+                    <div>
+                        <label for="secondname"> Фамилия*<div class="form_error" v-if="$v.secondName.$error">обязательное поле</div></label><input id="secondname" v-model="$v.secondName.$model" :class="[$v.secondName.$invalid & $v.secondName.$dirty?'error_border':'']">
+                        
+                    </div>
+                    <div>
+                        <label for="thirdname"> Отчество</label><input id="thirdname" v-model="thirdName">
+                    </div>
+                     <div>
+                         <label for="date"> Дата рождения*<div class="form_error" v-if="$v.birthDay.$error">обязательное поле</div></label><input id="date" v-model="$v.birthDay.$model" type="date" :class="[$v.birthDay.$invalid & $v.birthDay.$dirty?'error_border':'']">
+                         
+                     </div> 
+                     <div>
+                         <label for="phone"> Номер телефона* <div class="form_error" v-if="$v.phoneNumber.$error">обязательное поле и номер должен содержать 10 цифр</div> </label> <div>
+                             +7&nbsp;<input id="phone" v-model="$v.phoneNumber.$model" :class="[$v.phoneNumber.$invalid & $v.phoneNumber.$dirty?'error_border':'']">
+                            
+                            
+                            </div>
+
+                     </div> 
+                     <div>
+                         <label for="genderM"> Пол</label>
+                        <div class="gender">
+                            М<input id="genderM" type="radio" name="gender" value="male" v-model="gender">
+                            
+                            Ж<input id="genderF" type="radio" name="gender" value="female" v-model="gender">
+                        </div>
+                    </div>
+                    <div class="client">
+                        <label for="clientgroup"> Группа клиентов*
+                            <div class="form_error" v-if="$v.clientGroup.$error">обязательное поле</div>
+                        </label>
+                        <div class="clientGroupSelecor" :class="[$v.clientGroup.$invalid & $v.clientGroup.$dirty?'error_border':'']">
+                            <div v-for="cg in clientGroupOptions">
+                                <input type="checkbox" v-model="clientGroup" :value="cg"> {{cg}}&nbsp;
+                            </div>
+                        </div>  
+                    </div>
+                    <div>
+                        <label for="doc"> Лечащий врач</label>
+                        <select id="doc" v-model="doctor">
+                            <option v-for="doc in doctorList" :value="doc">{{doc}}</option>
+                        </select>
+                    </div>
+                    <div>
+                    <label for="sms"> Не отправлять СМС</label>
+                    <input id="sms" type="checkbox" v-model="sendSMS">
+
+                    </div>
+                    
+
+                </div>
+                
+               
+                <div class="title">
+                    <h2>Адрес</h2>
+                </div>
+                
+                <div class="adress">
+                    
+                    <div class="adress__item">
+                        <label for="input_index"> Индекс</label> <input id="input_index" type="text" v-model="index">
+                    </div>
+                    <div class="adress__item">
+                        <label for="input_country"> Страна</label> <input id="input_country" type="text" v-model="country">
+                    </div>
+                    <div class="adress__item">
+
+                        <label for="input_region"> Область</label>  <input id="input_region" type="text" v-model="region">
+                    </div>
+
+                    <div class="adress__item">
+                        <label for="input_city"> Город*
+                            
+                        </label>  
+                        <input id="input_city" type="text" v-model="$v.city.$model" :class="[$v.city.$invalid & $v.city.$dirty?'error_border':'']">
+                        <div class="form_error" v-if="$v.city.$error">обязательное поле</div>
+                    </div>
+
+                    <div class="adress__item">
+                        <label for="input_street"> Улица</label> <input id="input_street" type="text" v-model="street">
+                    </div>
+
+                    <div class="adress__item">
+                        <label for="input_home"> Дом</label>  <input id="input_home" type="text" v-model="home">
+                    </div>
+
+    
+                </div>
+
+                <div class="title">
+                    <h2>Паспорт</h2>
+                </div>
+                <div class="passport">
+                    
+                    <div class="passport__item">
+                        <label for="docType">Тип документа*
+                            <div class="form_error" v-if="$v.documentType.$error">обязательное поле</div>
+                        </label>
+                        <select id="docType" v-model="$v.documentType.$model" :class="[$v.documentType.$invalid & $v.documentType.$dirty?'error_border':'']">
+                            <option v-for="docs in documentTypes" :value="docs">{{docs}}</option>
+                        </select>
+                    </div>
+                    <div class="passport__item">
+                        <label for="doc_series"> Серия</label> 
+                        <input id="doc_series" type="text" v-model="documentSeries">
+                    </div>
+                    <div class="passport__item">
+                        <label for="doc_number"> Номер</label> 
+                        <input id="doc_number" type="text" v-model="documentNumber">
+                    
+                    </div>
+                    <div class="passport__item">
+                        <label for="doc_givedby"> Кем выдан</label> 
+                        <input id="doc_givedby" type="text" v-model="documentGivedBy">
+                    
+                    </div>
+                    <div class="passport__item">
+                        <label for="doc_giveddate"> Дата выдачи*
+                            <div class="form_error" v-if="$v.documentGivedDate.$error">обязательное поле</div>
+                        </label> 
+                        <input id="doc_giveddate" type="date" v-model="$v.documentGivedDate.$model" :class="[$v.documentGivedDate.$invalid & $v.documentGivedDate.$dirty?'error_border':'']">
+                    
+                    </div>
+                    
+                    
+                </div>
+                <button type="submit">Готово</button>
+                <div v-if="submitStatus==='submit'" class="subok submitstatus"> Форма успешно отправлена</div>
+                <div v-if="submitStatus==='invalid'" class="suberror submitstatus   "> Перепроверте данные</div>
+                
+                <!--<pre>{{$v}}</pre>-->
+                
+            </form>
+        </div>
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vuelidate/dist/vuelidate.min.js"></script>
+    <script src="vuelidate/dist/validators.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
